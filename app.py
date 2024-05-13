@@ -82,12 +82,12 @@ def main(image_path: str = "back-to-the-future-logo.png") -> None:
             st.stop()
 
         is_discount = price_infos["discount"] != 1
-        is_discount_message = f"{100*round(price_infos["discount"]-1,2)}% de réduction appliquée sur l'ensemble de vos DVDs 'Back to the Future' ✅"
+        is_discount_message = f"{100*round(price_infos['discount']-1,2)}% de réduction appliquée sur l'ensemble de vos DVDs 'Back to the Future' ✅"
         no_discount_message = "Achetez differents DVDs 'Back to the Future' (1, 2, 3) pour obtenir jusqu'a 20% de reduction 🚀🚀!"
 
         st.metric(
             label=":blue[Prix final de votre panier :]",
-            value=f"{price_infos["price"]}€",
+            value=f"{price_infos['price']}€",
             delta=is_discount_message if is_discount else no_discount_message,
             delta_color="inverse" if is_discount else "off",
         )
