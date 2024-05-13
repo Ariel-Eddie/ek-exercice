@@ -21,7 +21,7 @@ def count_dvd_types(input_string: str, split_character: str = "\n") -> dict:
     et le nombre de DVDs qui ne font pas partie de cette saga.
     """
 
-    if not isinstance(input_string, str):
+    if not isinstance(input_string, str) or not input_string.strip():
         return {}
 
     items = [item for item in input_string.split(split_character) if item]
