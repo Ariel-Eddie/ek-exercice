@@ -16,6 +16,10 @@ Ce repo implémente une solution simple qui adresse ce problème.
 
 # Comment utiliser :
 
+
+> [!IMPORTANT]
+> Requirement : python^=3.10
+
 - Entrée : Chaîne de caractères. Des retours à la ligne sont attendus comme séparation des différents noms de DVD.
 - Sortie : Prix (int/float)
 
