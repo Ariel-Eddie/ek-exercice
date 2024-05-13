@@ -34,8 +34,8 @@ def count_dvd_types(input_string: str, split_character: str = "\n") -> dict:
 
 
 def get_final_price(
-    input_string: str, base_price_per_other_dvd: int|float = 20, base_price_per_bttf_dvd: int|float = 15
-) -> dict:
+    input_string: str, base_price_per_other_dvd: int|float = 20, base_price_per_bttf_dvd: int|float = 15, price_only: bool = True
+) -> dict|int|float:
     """
     Calcule le prix final en prenant en compte les réductions pour les DVDs de la saga 'Back to the Future'.
     Paramètres : input_string (str) : La chaîne de caractères contenant les noms des DVDs, séparés par des retours à la ligne.
@@ -61,6 +61,8 @@ def get_final_price(
     price += bttf_discount * (
         base_price_per_bttf_dvd * dvd_types["n_back_to_the_future"]
     )
+    if price_only:
+        return price
     return {"price": price, "discount": bttf_discount}
 
 
@@ -74,14 +76,14 @@ def main(image_path: str = "back-to-the-future-logo.png") -> None:
     st.text_area(label="Entrez le noms de vos articles (DVD)", key="input_string")
 
     if st.session_state.input_string:
-        price_infos = get_final_price(input_string=st.session_state.input_string)
+        price_infos = get_final_price(input_string=st.session_state.input_string, price_only=False)
         if not price_infos:
             st.error("Veuillez entrer des noms valides de DVD.")
             st.stop()
 
         is_discount = price_infos["discount"] != 1
         is_discount_message = f"{100*round(price_infos["discount"]-1,2)}% de réduction appliquée sur l'ensemble de vos DVDs 'Back to the Future' ✅"
-        no_discount_message = "Achetez differents DVDs de la saga 'Back to the Future' pour obtenir jusqu'a 20% de reduction 🚀🚀!"
+        no_discount_message = "Achetez differents DVDs 'Back to the Future' (1, 2, 3) pour obtenir jusqu'a 20% de reduction 🚀🚀!"
 
         st.metric(
             label=":blue[Prix final de votre panier :]",
