@@ -1,4 +1,4 @@
-# Exercice technique :
+# Exercice Forward to the Past :
 
 L'équipe de production de "Back to the Future" souhaite refaire la promotion de sa saga avec une stratégie marketing incluant des réductions sur l'achat de leurs DVD.
 Nous voulons calculer automatiquement les réductions à appliquer en fonction du panier d'achat.

@@ -40,9 +40,10 @@ def get_final_price(
     Calcule le prix final en prenant en compte les réductions pour les DVDs de la saga 'Back to the Future'.
     Paramètres : input_string (str) : La chaîne de caractères contenant les noms des DVDs, séparés par des retours à la ligne.
     Retourne : dict : Un dictionnaire avec le prix final après réduction et le taux de réduction appliqué.
+    'discount' dans la sortie correspond à la part restante du prix après application de la réduction de 10% ou 20%
     """
 
-    if not isinstance(input_string, str):
+    if not isinstance(input_string, str) or not input_string.strip():
         return {}
 
     dvd_types = count_dvd_types(input_string)
@@ -76,6 +77,7 @@ def main(image_path: str = "back-to-the-future-logo.png") -> None:
         price_infos = get_final_price(input_string=st.session_state.input_string)
         if not price_infos:
             st.error("Veuillez entrer des noms valides de DVD.")
+            st.stop()
 
         is_discount = price_infos["discount"] != 1
         is_discount_message = f"{100*round(price_infos["discount"]-1,2)}% de réduction appliquée sur l'ensemble de vos DVDs 'Back to the Future' ✅"
