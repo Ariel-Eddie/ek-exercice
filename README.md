@@ -38,11 +38,11 @@ print(get_final_price(basket))
 
 Pour utiliser l'interface Streamlit, il faut installer le package 'streamlit' et exécuter la commande suivante :
 ```
-pip install streamlit
+pip install streamlit && pip install -e .
 ```
 ou 
 ```
-pip install -r requirements.txt
+pip install -r requirements.txt  && pip install -e .
 ```
 
 Ensuite :

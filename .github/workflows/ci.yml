@@ -1,0 +1,27 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run:  pip install -r requirements.txt && pip install -e .
+
+    - name: Linter with flake8
+      run: flake8 . --max-line-length=150
+
+    - name: Run tests
+      run: pytest
+
+    - name: Build Docker image
+      run: docker build -t exercice .
